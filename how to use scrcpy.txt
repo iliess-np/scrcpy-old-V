@@ -1,0 +1,113 @@
+//Recording
+	.\scrcpy.exe --record file.mp4
+	.\scrcpy.exe -r file.mkv
+	
+	o// disable mirroring while recording:
+			scrcpy --no-display --record file.mp4
+			scrcpy -Nr file.mkv
+			# interrupt recording with Ctrl+C
+
+//Read-only To disable controls (everything which can interact with the device: input keys, mouse events, drag&drop files):
+	.\scrcpy.exe --no-control
+	.\scrcpy.exe -n
+
+//Stay awake To prevent the device to sleep after some delay when the device is plugged in:
+	.\scrcpy.exe --stay-awake
+	.\scrcpy.exe -w
+	.\scrcpy.exe --turn-screen-off --stay-awake
+	.\scrcpy.exe -Sw
+
+//Show touches
+	.\scrcpy.exe --show-touches
+	.\scrcpy.exe -t
+
+//Turn screen ==> Or by pressing Ctrl+o at any time => off It is possible to turn the device screen off while mirroring on start with a command-line option:
+	.\scrcpy.exe --turn-screen-off
+	.\scrcpy.exe -S
+		**//To turn it back on, press 
+			Ctrl+Shift+o 
+			(or POWER, Ctrl+p).
+
+//Lock video orientation To lock the orientation of the mirroring  => Ctrl+← (left) and Ctrl+→ (right). => Ctrl+r switch between portrait and landscape 
+	.\scrcpy.exe --lock-video-orientation 0   # natural orientation
+	.\scrcpy.exe --lock-video-orientation 1   # 90° counterclockwise
+	.\scrcpy.exe --lock-video-orientation 2   # 180°
+	.\scrcpy.exe --lock-video-orientation 3   # 90° clockwise
+
+//Crop to mirror only part of the screen. (If --max-size is also specified, resizing is applied after cropping.)
+	.\scrcpy.exe --crop 1224:1440:0:0   # 1224x1440 at offset (0,0)
+
+//full screen
+	.\scrcpy.exe -f
+
+//limit both the width and height to some value 
+	.\scrcpy.exe --max-size 1024
+	.\scrcpy.exe -m 1024  # short version
+
+//Change bit-rate
+	.\scrcpy.exe --bit-rate 2M
+	.\scrcpy.exe -b 2M  # short version
+	
+//Limit frame rate  (supported since Android 10)
+	.\scrcpy.exe --max-fps 15
+
+//for wireless
+	.\adb.exe tcpip 5555
+	.\adb.exe connect 192.168.1.5:5555
+	.\scrcpy.exe
+	
+	**//Multi-devices
+		**If several devices are listed in adb devices, you must specify the serial:
+			.\scrcpy.exe --serial 0123456789abcdef
+			.\scrcpy.exe -s 0123456789abcdef  # short version
+		**If the device is connected over TCP/IP:
+			.\scrcpy.exe --serial 192.168.0.1:5555
+			.\scrcpy.exe -s 192.168.1.5:5555  # short versio
+
+
+//disconnect
+	./adb.exe disconnect
+//Borderless
+	.\scrcpy.exe --window-borderless
+
+//Always on top To keep the scrcpy window always on top:
+	.\scrcpy.exe --always-on-top
+
+.\scrcpy.exe --help
+
+
+
+//ERROR: "adb push" returned with value 1
+	./adb.exe devices
+	scrcpy -s YOUR_DEVICE_IP_address
+
+
+
+Action										Shortcut							Shortcut (macOS)
+Switch fullscreen mode						Ctrl+f								Cmd+f
+Rotate display left							Ctrl+← (left)						Cmd+← (left)
+Rotate display right						Ctrl+→ (right)						Cmd+→ (right)
+Resize window to 1:1 (pixel-perfect)		Ctrl+g								Cmd+g
+Resize window to remove black borders		Ctrl+x | Double-click¹				Cmd+x | Double-click¹
+Click on HOME								Ctrl+h | Middle-click				Ctrl+h | Middle-click
+Click on BACK								Ctrl+b | Right-click²				Cmd+b | Right-click²
+Click on APP_SWITCH							Ctrl+s								Cmd+s
+Click on MENU								Ctrl+m								Ctrl+m
+Click on VOLUME_UP							Ctrl+↑ (up)							Cmd+↑ (up)
+Click on VOLUME_DOWN						Ctrl+↓ (down)						Cmd+↓ (down)
+Click on POWER								Ctrl+p								Cmd+p
+Power on									Right-click²						Right-click²
+Turn device screen off (keep mirroring)		Ctrl+o								Cmd+o
+Turn device screen on						Ctrl+Shift+o						Cmd+Shift+o
+Rotate device screen						Ctrl+r								Cmd+r
+Expand notification panel					Ctrl+n								Cmd+n
+Collapse notification panel					Ctrl+Shift+n						Cmd+Shift+n
+Copy device clipboard to computer			Ctrl+c								Cmd+c
+Paste computer clipboard to device			Ctrl+v								Cmd+v
+Copy computer clipboard to device and paste	Ctrl+Shift+v						Cmd+Shift+v
+Enable/disable FPS counter (on stdout)		Ctrl+i								Cmd+i
+
+
+
+
+
